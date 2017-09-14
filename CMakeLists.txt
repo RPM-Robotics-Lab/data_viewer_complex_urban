@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(data_viewer)
 
+
+add_definitions(-std=c++11)
+
+if (NOT CMAKE_BUILD_TYPE)
+  set (CMAKE_BUILD_TYPE release)
+endif ()
+
 find_package(catkin REQUIRED cmake_modules
   COMPONENTS
   roscpp
@@ -17,13 +24,13 @@ find_package(catkin REQUIRED cmake_modules
   pcl_msgs
   irp_sen_msgs
 )
-
+set(CMAKE_AUTOMOC ON)
 
 find_package(Eigen REQUIRED)
 
 #set (CMAKE_PREFIX_PATH /opt/Qt5.6.1/5.6/gcc_64/lib/cmake)
 
-find_package(Qt5Core)
+#find_package(Qt5Core)
 find_package(Qt5Widgets)
 find_package(Qt5Gui)
 find_package(Qt5OpenGL)
@@ -90,7 +97,7 @@ include_directories(
 )
 
 
-qt5_wrap_cpp(data_viewer_QTLib_hdr_moc ${data_viewer_QTLib_hdr})
+#qt5_wrap_cpp(data_viewer_QTLib_hdr_moc ${data_viewer_QTLib_hdr})
 qt5_wrap_ui (data_viewer_QTLib_ui_moc  ${data_viewer_QTLib_ui})
 qt5_add_resources(SHADER_RSC_ADDED ${SRC_DIR}/resources.qrc)
 
@@ -100,31 +107,23 @@ qt5_add_resources(SHADER_RSC_ADDED ${SRC_DIR}/resources.qrc)
 ## Build ##
 ###########
 
-add_definitions(-std=c++11)
 
 #add_definitions(${Qt5Widgets_DEFINITIONS})
 
 
-add_library(data_viewer_QTLib SHARED
- ${data_viewer_QTLib_src}
- ${data_viewer_QTLib_hdr_moc}
- ${data_viewer_QTLib_ui_moc}
-)
-
-target_link_libraries (data_viewer_QTLib Qt5::Widgets Qt5::Gui Qt5::OpenGL)
-
-add_executable(data_viewer ${data_viewer_QTLib_src} ${data_viewer_QTLib_hdr} ${data_viewer_QTBin_src} ${SHADER_RSC_ADDED})     
+add_executable(data_viewer ${data_viewer_QTLib_src} ${data_viewer_QTLib_hdr} ${data_viewer_QTBin_src} ${SHADER_RSC_ADDED} ${data_viewer_QTLib_ui_moc})     
 
 add_dependencies(data_viewer data_viewer_msgs_generate_messages_cpp ${PROJECT_NAME}_gencfg)
 add_dependencies(data_viewer ${catkin_EXPORTED_TARGETS})
-add_dependencies(data_viewer_QTLib ${catkin_EXPORTED_TARGETS})
 
 target_link_libraries(data_viewer
 
   ${catkin_LIBRARIES}
   ${QT_LIBRARIES} 
   ${OPENGL_LIBRARIES}
-  data_viewer_QTLib
+  Qt5::Widgets
+  Qt5::Gui 
+  Qt5::OpenGL
   GL
   ${BOOST_CUSTOM_LIBS}
   ${Eigen_LIBRARIES}
