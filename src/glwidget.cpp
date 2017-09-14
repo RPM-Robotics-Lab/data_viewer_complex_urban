@@ -136,7 +136,7 @@ void GLWidget::paintGL()
   glLineWidth(3);
   drawShader(shaderProgramColor, GL_LINES, T, axes, axes_color);
 
-  glPointSize(1);
+  glPointSize(2);
   mutex.lock();
   drawShader(shaderProgramColor, GL_POINTS, T, cpc, cpc_color);
   mutex.unlock();
