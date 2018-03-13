@@ -226,7 +226,7 @@ void ROSThread::StereoLeftImgCallback(const sensor_msgs::ImageConstPtr& msg)
   mutex->unlock();
   try
   {
-    cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+    cv_ptr = cv_bridge::toCvCopy(msg, msg->encoding);
   }
   catch (cv_bridge::Exception& e)
   {
@@ -234,9 +234,9 @@ void ROSThread::StereoLeftImgCallback(const sensor_msgs::ImageConstPtr& msg)
     return;
   }
   cv::Mat rgb;
-  cv::cvtColor(cv_ptr->image, rgb, cv::COLOR_BGR2RGB);
+  cv::cvtColor(cv_ptr->image, rgb, CV_BayerRG2BGR);
   mutex->lock();
-  stereo_left_raw_img_ = QPixmap::fromImage(QImage(rgb.data, cv_ptr->image.cols, cv_ptr->image.rows, static_cast<int>(cv_ptr->image.step), QImage::Format_RGB888));
+  stereo_left_raw_img_ = QPixmap::fromImage(QImage(rgb.data, rgb.cols, rgb.rows, static_cast<int>(rgb.step), QImage::Format_RGB888));
   mutex->unlock();
 
   if(stereo_left_raw_img_init_ == false){
@@ -252,7 +252,7 @@ void ROSThread::StereoRightImgCallback(const sensor_msgs::ImageConstPtr& msg)
   mutex->unlock();
   try
   {
-    cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+    cv_ptr = cv_bridge::toCvCopy(msg, msg->encoding);
   }
   catch (cv_bridge::Exception& e)
   {
@@ -260,9 +260,9 @@ void ROSThread::StereoRightImgCallback(const sensor_msgs::ImageConstPtr& msg)
     return;
   }
   cv::Mat rgb;
-  cv::cvtColor(cv_ptr->image, rgb, cv::COLOR_BGR2RGB);
+  cv::cvtColor(cv_ptr->image, rgb, CV_BayerRG2BGR);
   mutex->lock();
-  stereo_right_raw_img_ = QPixmap::fromImage(QImage(rgb.data, cv_ptr->image.cols, cv_ptr->image.rows, static_cast<int>(cv_ptr->image.step), QImage::Format_RGB888));
+  stereo_right_raw_img_ = QPixmap::fromImage(QImage(rgb.data, rgb.cols, rgb.rows, static_cast<int>(rgb.step), QImage::Format_RGB888));
   mutex->unlock();
 
   if(stereo_right_raw_img_init_ == false){
