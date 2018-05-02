@@ -2,30 +2,34 @@
     <arg name="driver" default="data_viewer"/>
     <arg name="output" default="screen"/>
     <node name="$(arg driver)" pkg="$(arg driver)" type="$(arg driver)" output="$(arg output)">
-    <param name="L_V_roll" value=" 1.4663 " />
-    <param name="L_V_pitch" value="44.9437 " />
-    <param name="L_V_yaw" value="136.893 " />
-    <param name="L_V_x" value="-0.510375 " />
-    <param name="L_V_y" value="0.327094 " />
-    <param name="L_V_z" value="1.92742 " />
-    <param name="R_V_roll" value="-179.319 " />
-    <param name="R_V_pitch" value="135.516 " />
-    <param name="R_V_yaw" value="46.1558 " />
-    <param name="R_V_x" value="-0.513477 " />
-    <param name="R_V_y" value="-0.489474 " />
-    <param name="R_V_z" value="1.94033 " />
-    <param name="B_S_roll" value="46.0334 " />
-    <param name="B_S_pitch" value="-179.716 " />
-    <param name="B_S_yaw" value="90.1236 " />
-    <param name="B_S_x" value="-0.76468 " />
-    <param name="B_S_y" value="-0.104974 " />
-    <param name="B_S_z" value="1.6687 " />
-    <param name="M_S_roll" value="144.669 " />
-    <param name="M_S_pitch" value="0.376617 " />
-    <param name="M_S_yaw" value="90.4666 " />
-    <param name="M_S_x" value="0.611235 " />
-    <param name="M_S_y" value="-0.0967564 " />
-    <param name="M_S_z" value="1.86723 " />
+    <param name="L_V_roll" value=" 1.69162 " />
+    <param name="L_V_pitch" value="44.9466 " />
+    <param name="L_V_yaw" value="136.579 " />
+    <param name="L_V_x" value="-0.440699 " />
+    <param name="L_V_y" value="0.397052 " />
+    <param name="L_V_z" value="1.90953 " />
+
+    <param name="R_V_roll" value="179.496 " />
+    <param name="R_V_pitch" value="135.409 " />
+    <param name="R_V_yaw" value="44.0134 " />
+    <param name="R_V_x" value="-0.449885 " />
+    <param name="R_V_y" value="-0.416713 " />
+    <param name="R_V_z" value="1.91294 " />
+
+    <param name="B_S_roll" value="46.2898 " />
+    <param name="B_S_pitch" value="-178.394 " />
+    <param name="B_S_yaw" value="89.32 " />
+    <param name="B_S_x" value="-0.69293 " />
+    <param name="B_S_y" value="0.0125321 " />
+    <param name="B_S_z" value="1.62381 " />
+
+    <param name="M_S_roll" value="144.059 " />
+    <param name="M_S_pitch" value="0.393917 " />
+    <param name="M_S_yaw" value="89.5643 " />
+    <param name="M_S_x" value="0.697959 " />
+    <param name="M_S_y" value="-0.0254375 " />
+    <param name="M_S_z" value="1.80916 " />
+
     </node>
 
 </launch>
