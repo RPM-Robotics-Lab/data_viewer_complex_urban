@@ -234,7 +234,7 @@ void ROSThread::StereoLeftImgCallback(const sensor_msgs::ImageConstPtr& msg)
     return;
   }
   cv::Mat rgb;
-  cv::cvtColor(cv_ptr->image, rgb, CV_BayerRG2BGR);
+  cv::cvtColor(cv_ptr->image, rgb, CV_BayerRG2RGB);
   mutex->lock();
   stereo_left_raw_img_ = QPixmap::fromImage(QImage(rgb.data, rgb.cols, rgb.rows, static_cast<int>(rgb.step), QImage::Format_RGB888));
   mutex->unlock();
@@ -260,7 +260,7 @@ void ROSThread::StereoRightImgCallback(const sensor_msgs::ImageConstPtr& msg)
     return;
   }
   cv::Mat rgb;
-  cv::cvtColor(cv_ptr->image, rgb, CV_BayerRG2BGR);
+  cv::cvtColor(cv_ptr->image, rgb, CV_BayerRG2RGB);
   mutex->lock();
   stereo_right_raw_img_ = QPixmap::fromImage(QImage(rgb.data, rgb.cols, rgb.rows, static_cast<int>(rgb.step), QImage::Format_RGB888));
   mutex->unlock();
